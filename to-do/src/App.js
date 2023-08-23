@@ -1,14 +1,10 @@
-import ObjectTest, { myObject } from "./Components/ObjectTest";
 
-if (true) {
-  console.log(Object.entries(myObject));
-} 
+import Form from "./Components/Form";
 
 function App() {
   return (
     <div>
-      <ObjectTest/>
-
+      <Form/>
     </div>
   );
 }
