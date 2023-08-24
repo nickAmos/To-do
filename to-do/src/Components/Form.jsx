@@ -14,7 +14,11 @@ export default function Form() {
         setTodos(currentObject => {
             return [
                 ...currentObject, 
-                {id: crypto.randomUUID(), title: newObject, timeLine: timeline},
+                {id: crypto.randomUUID(),
+                title: newObject,
+                timeLine: timeline,
+                 
+            },
             ]
         }) 
 
@@ -23,9 +27,23 @@ export default function Form() {
 
     }
 
+    function deleteTask(id) {
+        setTodos(currentTodos => {
+            return currentTodos.filter(todo => todo.id !== id);
+        })
+
+    }
+
+    function logPosition(id) {
+        
+        let positionY = id['y'];
+        console.log(positionY);
+    }
+
+
     return(
         <>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} id="task-form">
 
             <label htmlFor="timeline">Timeline</label>
                 <input
@@ -53,15 +71,27 @@ export default function Form() {
 
             {todos.map(todo => {
                 return(
-                    <div key={todo.id}>
-                        <div draggable>
+                    
+                    <div key={todo.id} className="todo-container">
+                        <div id="todo-textbox">
                             <h1>{todo.title}</h1>
                             <p>{todo.id}</p>
                             <p>{todo.timeLine}</p>
-                            <button>X</button>
+                            <button onClick={e => {
+                                logPosition(e.target.getBoundingClientRect())
+                                let positionX = (e.target.getBoundingClientRect()['x']);
+                                console.log(positionX);
+                                }}>
+                                log position</button>
+                            <button onClick={() => deleteTask(todo.id)}>delete</button>
+                            
                         </div>
                     </div>
+
+                    
                 )
+                
+                
             })}
         </>
     )
