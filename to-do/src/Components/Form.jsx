@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 
 export default function Form() {
@@ -6,6 +6,7 @@ export default function Form() {
     const [newObject, setNewObject] = useState('');
     const [timeline, setTimeLine] = useState('');
     const [todos, setTodos] = useState([]);
+  
 
 
     function handleSubmit(e) {
@@ -34,11 +35,7 @@ export default function Form() {
 
     }
 
-    function logPosition(id) {
-        
-        let positionY = id['y'];
-        console.log(positionY);
-    }
+    
 
 
     return(
@@ -78,7 +75,6 @@ export default function Form() {
                             <p>{todo.id}</p>
                             <p>{todo.timeLine}</p>
                             <button onClick={e => {
-                                logPosition(e.target.getBoundingClientRect())
                                 let positionX = (e.target.getBoundingClientRect()['x']);
                                 console.log(positionX);
                                 }}>
